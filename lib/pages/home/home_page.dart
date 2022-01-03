@@ -5,6 +5,16 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget listTileForDrawer(IconData iconData, String title) {
+      return ListTile(
+        leading: Icon(iconData),
+        title: Text(
+          title,
+          // style: TextStyle(fontSize: 16),
+        ),
+      );
+    }
+
     Widget products() {
       return Container(
         margin: EdgeInsets.all(5),
@@ -151,7 +161,88 @@ class HomePage extends StatelessWidget {
           )
         ],
       ),
-      drawer: Drawer(),
+      drawer: Drawer(
+        child: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [
+            Color(0xffAFFB87).withOpacity(0.6),
+            Color(0xffD5FAC1).withOpacity(0.3)
+          ])),
+          child: ListView(
+            children: [
+              DrawerHeader(
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                      backgroundColor: Colors.yellow,
+                      maxRadius: 35,
+                      backgroundImage: AssetImage("images/nadim.jpg"),
+                    ),
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const Text(
+                              "Welcome Guest",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 19),
+                            ),
+                            OutlinedButton(
+                              onPressed: () {},
+                              child: const Text(
+                                "Login",
+                                style:
+                                    TextStyle(color: Colors.teal, fontSize: 16),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Column(
+                  children: [
+                    listTileForDrawer(Icons.home, "Home"),
+                    listTileForDrawer(Icons.shopping_bag, "Review Card"),
+                    listTileForDrawer(Icons.person, "My Profile"),
+                    listTileForDrawer(Icons.notifications, "Notification"),
+                    listTileForDrawer(Icons.star, "Rating & Review"),
+                    listTileForDrawer(Icons.favorite, "Wishist"),
+                    listTileForDrawer(
+                        Icons.note_alt_rounded, "Raise a Complaint"),
+                    listTileForDrawer(Icons.question_answer_outlined, "FAQs"),
+                    Divider(
+                      thickness: 2,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Contact Support",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 16),
+                          ),
+                          Text("Call Us : +8801683916727"),
+                          Text("Mail Us : klnadim27@gmail.com"),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         child: ListView(
